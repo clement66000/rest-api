@@ -12,3 +12,8 @@ logout:
 anaxago_core_registration:
     path: /register
     defaults: { _controller: AnaxagoCoreBundle:Security:registration }
+
+project:
+    type:     rest
+    resource: Anaxago\CoreBundle\Controller\ProjectController
+

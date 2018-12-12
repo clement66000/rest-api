@@ -44,6 +44,18 @@ class Project
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="text")
+     */
+    private $status;
+
+    /**
+     * @var float
+     */
+    private $interest;
+
+    /**
      * Get id
      *
      * @return int
@@ -124,5 +136,39 @@ class Project
     {
         return $this->description;
     }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return float
+     */
+    public function getInterest()
+    {
+        return $this->interest;
+    }
+
+    /**
+     * @param float $interest
+     */
+    public function setInterest(float $interest)
+    {
+        $this->interest = $interest;
+    }
+
+
 }
 

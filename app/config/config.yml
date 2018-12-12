@@ -18,7 +18,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: true }
     default_locale: '%locale%'
     trusted_hosts: ~
     session:
@@ -30,6 +30,7 @@ framework:
     assets: ~
     php_errors:
         log: true
+
 
 # Twig Configuration
 twig:
@@ -66,3 +67,30 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# FosRest Configuration
+#fos_rest:
+#    routing_loader:
+#        include_format: false
+#    view:
+#        view_response_listener: true
+#    format_listener:
+#        rules:
+#            - { path: '^/', priorities: ['json'], fallback_format: 'json', prefer_extension: false }
+#    # configuration à rajouter pour désactiver le body listener
+#    body_listener:
+#        enabled: true
+
+fos_rest:
+    body_listener: true
+    param_fetcher_listener: true
+    view:
+        view_response_listener: 'force'
+        empty_content: 204
+        formats:
+            json : true
+    format_listener:
+        enabled: true
+        rules:
+            - { path: '^/api', priorities: ['json'], fallback_format: json, prefer_extension: false }
+            - { path: '^/', stop: true }
