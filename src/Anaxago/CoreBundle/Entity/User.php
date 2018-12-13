@@ -8,6 +8,8 @@
 
 namespace Anaxago\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -76,9 +78,12 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Project")
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Anaxago\CoreBundle\Entity\Interest", inversedBy="interest")
      */
-    private $project;
+    private $interest;
+
+
     /**
      * @return int
      */
@@ -120,7 +125,7 @@ class User implements UserInterface
      */
     public function getFullName()
     {
-        return $this->firstName.' '.$this->lastName;
+        return $this->firstName . ' ' . $this->lastName;
     }
 
     /**
@@ -281,25 +286,5 @@ class User implements UserInterface
     {
         $this->plainPassword = null;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getProject()
-    {
-        return $this->project;
-    }
-
-    /**
-     * @param $project
-     * @return User
-     */
-    public function setProject($project)
-    {
-        $this->project = $project;
-
-        return $this;
-    }
-
-
 }
+

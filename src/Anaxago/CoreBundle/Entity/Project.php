@@ -2,6 +2,7 @@
 
 namespace Anaxago\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,10 +51,13 @@ class Project
      */
     private $status;
 
+
     /**
-     * @var float
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Anaxago\CoreBundle\Entity\Interest", inversedBy="interest")
      */
     private $interest;
+
 
     /**
      * Get id
