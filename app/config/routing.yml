@@ -1,3 +1,7 @@
+app:
+    resource: "@AnaxagoCoreBundle/Controller/DefaultController.php"
+    type:     annotation
+
 anaxago_core:
     resource: "@AnaxagoCoreBundle/Resources/config/routing.yml"
     prefix:   /
@@ -17,3 +21,6 @@ project:
     type:     rest
     resource: Anaxago\CoreBundle\Controller\ProjectController
 
+users:
+    type:     rest
+    resource: Anaxago\CoreBundle\Controller\UserController

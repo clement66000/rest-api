@@ -9,7 +9,6 @@
 namespace Anaxago\CoreBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -23,7 +22,7 @@ class User implements UserInterface
      * @var int
      *
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="AUTO")ashmac symfony
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -78,10 +77,15 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Anaxago\CoreBundle\Entity\Interest", inversedBy="interest")
+     * @var ArrayCollection|Interest[]
+     * @ORM\OneToMany(targetEntity="Anaxago\CoreBundle\Entity\Interest", indexBy="id", mappedBy="user",cascade={"persist"})
      */
     private $interest;
+
+    public function __construct()
+    {
+        $this->interest = new ArrayCollection();
+    }
 
 
     /**
@@ -286,5 +290,32 @@ class User implements UserInterface
     {
         $this->plainPassword = null;
     }
+
+    /**
+     * @param Interest $interest
+     */
+    public function remove(Interest $interest)
+    {
+        unset($this->interest[$interest->getId()]);
+    }
+
+    /**
+     * @param Interest $interest
+     */
+    public function add(Interest $interest)
+    {
+        $this->interest[$interest->getId()] = $interest;
+    }
+
+    /**
+     * @param Project $project
+     * @param float $value
+     */
+    public function addInteressedProject(Project $project, float $value)
+    {
+        $this->add(new Interest($this, $project, $value));
+        return $this;
+    }
+
 }
 

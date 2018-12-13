@@ -26,7 +26,6 @@ class ProjectController extends Controller
     /**
      * @Get("/projects")
      */
-
     public function getProjectListAction(Request $request)
     {
         $projects = $this->get('doctrine.orm.entity_manager')
@@ -66,33 +65,6 @@ class ProjectController extends Controller
 
         return $project;
     }
-
-    /**
-     * @Rest\View()
-     * @Rest\Post("/projects/{id}")
-     */
-    public function getProjectAction(Request $request)
-    {
-        $user = $this->getUser();
-
-
-            $project = $this->get('doctrine.orm.entity_manager')
-                ->getRepository(Project::class)
-                ->find($request->get('id'));
-            /* @var $project Project */
-
-            if (empty($project)) {
-                return new JsonResponse(['message' => 'Project not found'], Response::HTTP_NOT_FOUND);
-            }
-
-            $project->setInterest($request->get('interest'));
-
-            $em = $this->get('doctrine.orm.entity_manager');
-            $em->persist($project);
-            $em->flush();
-
-            return $project;
-        }
 }
 
 

@@ -51,14 +51,6 @@ class Project
      */
     private $status;
 
-
-    /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Anaxago\CoreBundle\Entity\Interest", inversedBy="interest")
-     */
-    private $interest;
-
-
     /**
      * Get id
      *
@@ -158,7 +150,7 @@ class Project
     }
 
     /**
-     * @return float
+     * @return Interest[]|ArrayCollection
      */
     public function getInterest()
     {

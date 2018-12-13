@@ -13,7 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
 class Interest
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Anaxago\CoreBundle\Entity\User")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Anaxago\CoreBundle\Entity\User", inversedBy="interest")
      */
     private $user;
 
@@ -24,8 +33,35 @@ class Interest
 
     /**
      * @var float
+     * @ORM\Column(type="float")
      */
     private $InvestMoney;
+
+    public function __construct($user, $project, $InvestMoney)
+    {
+        $this->setUser($user);
+        $this->setProject($project);
+//        dump($InvestMoney);
+//        die;
+        $this->setInvestMoney($InvestMoney);
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return mixed
@@ -36,15 +72,17 @@ class Interest
     }
 
     /**
-     * @param mixed $user
+     * @param User $user
+     * @return $this
      */
-    public function setUser($user): void
+    public function setUser(User $user)
     {
         $this->user = $user;
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return Project
      */
     public function getProject()
     {
@@ -54,7 +92,7 @@ class Interest
     /**
      * @param mixed $project
      */
-    public function setProject($project): void
+    public function setProject(Project $project): void
     {
         $this->project = $project;
     }
@@ -74,9 +112,5 @@ class Interest
     {
         $this->InvestMoney = $InvestMoney;
     }
-
-
-
-
 }
 
