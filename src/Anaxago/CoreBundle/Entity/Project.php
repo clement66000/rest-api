@@ -58,6 +58,12 @@ class Project
     private $interest;
 
     /**
+     * @var float
+     * @ORM\Column(name="total_amount", type="float")
+     */
+    private $totalAmount;
+
+    /**
      * Get id
      *
      * @return int
@@ -170,6 +176,23 @@ class Project
     {
         $this->interest = $interest;
     }
+
+    /**
+     * @return float
+     */
+    public function getTotalAmount(): float
+    {
+        return $this->totalAmount;
+    }
+
+    /**
+     * @param float $totalAmount
+     */
+    public function setTotalAmount(float $totalAmount): void
+    {
+        $this->totalAmount = $totalAmount;
+    }
+
 
 }
 

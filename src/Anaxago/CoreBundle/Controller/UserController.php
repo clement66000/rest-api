@@ -38,11 +38,28 @@ class UserController extends Controller
      */
     public function setInterestForProjectAction(Request $request, Project $project)
     {
-        $price = $request->request->get('value');
 
-        $em = $this->get('doctrine.orm.entity_manager');
-        $em->persist($this->getUser()->addInteressedProject($project, $price));
-        $em->flush();
+        if ($this->getUser()) {
+            $price = $request->request->get('value');
+
+            if ($project->getTotalAmount() != null) {
+
+                $project->setTotalAmount($project->getTotalAmount() + $price);
+                $em = $this->get('doctrine.orm.entity_manager');
+                $em->persist($this->getUser()->addInteressedProject($project, $price));
+                $em->flush();
+            }
+            else {
+                $project->setTotalAmount($price);
+                $em = $this->get('doctrine.orm.entity_manager');
+                $em->persist($this->getUser()->addInteressedProject($project, $price));
+                $em->flush();
+
+            }
+        }
+        else {
+            throw $this->createNotFoundException('Connectez-vous ou inscrivez vous !');
+        }
     }
 
     /**
