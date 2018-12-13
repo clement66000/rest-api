@@ -52,6 +52,12 @@ class Project
     private $status;
 
     /**
+     * @var ArrayCollection|Interest[]
+     * @ORM\OneToMany(targetEntity="Anaxago\CoreBundle\Entity\Interest", indexBy="id", mappedBy="project",cascade={"persist"})
+     */
+    private $interest;
+
+    /**
      * Get id
      *
      * @return int
@@ -164,7 +170,6 @@ class Project
     {
         $this->interest = $interest;
     }
-
 
 }
 

@@ -38,7 +38,6 @@ class UserController extends Controller
      */
     public function setInterestForProjectAction(Request $request, Project $project)
     {
-
         $price = $request->request->get('value');
 
         $em = $this->get('doctrine.orm.entity_manager');
@@ -54,7 +53,6 @@ class UserController extends Controller
         $interests = $this->getDoctrine()->getRepository(Interest::class)
             ->findAll();
 
-        /* @var $interest Interest */
         $formatted = [];
         foreach ($interests as $interest) {
             if ($this->getUser() && ($interest->getInvestMoney() != null)) {
