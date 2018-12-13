@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: clem
- * Date: 11/12/18
- * Time: 18:45
- */
+
 
 namespace Anaxago\CoreBundle\Controller;
 
