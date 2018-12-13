@@ -310,6 +310,7 @@ class User implements UserInterface
     /**
      * @param Project $project
      * @param float $value
+     * @return $this
      */
     public function addInteressedProject(Project $project, float $value)
     {

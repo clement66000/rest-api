@@ -9,9 +9,7 @@
 namespace Anaxago\CoreBundle\Controller;
 
 
-use Anaxago\CoreBundle\Repository\ProjectRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

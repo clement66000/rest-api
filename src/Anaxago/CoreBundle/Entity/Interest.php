@@ -41,8 +41,6 @@ class Interest
     {
         $this->setUser($user);
         $this->setProject($project);
-//        dump($InvestMoney);
-//        die;
         $this->setInvestMoney($InvestMoney);
     }
 
