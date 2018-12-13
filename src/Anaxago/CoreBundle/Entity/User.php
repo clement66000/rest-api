@@ -76,6 +76,10 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Project")
+     */
+    private $project;
+    /**
      * @return int
      */
     public function getId()
@@ -277,4 +281,25 @@ class User implements UserInterface
     {
         $this->plainPassword = null;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param $project
+     * @return User
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+
 }

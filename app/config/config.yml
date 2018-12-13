@@ -69,28 +69,15 @@ swiftmailer:
     spool: { type: memory }
 
 # FosRest Configuration
-#fos_rest:
-#    routing_loader:
-#        include_format: false
-#    view:
-#        view_response_listener: true
-#    format_listener:
-#        rules:
-#            - { path: '^/', priorities: ['json'], fallback_format: 'json', prefer_extension: false }
-#    # configuration à rajouter pour désactiver le body listener
-#    body_listener:
-#        enabled: true
-
 fos_rest:
-    body_listener: true
-    param_fetcher_listener: true
+    routing_loader:
+        include_format: false
     view:
-        view_response_listener: 'force'
-        empty_content: 204
-        formats:
-            json : true
+        view_response_listener: true
     format_listener:
-        enabled: true
         rules:
-            - { path: '^/api', priorities: ['json'], fallback_format: json, prefer_extension: false }
-            - { path: '^/', stop: true }
+            - { path: '^/', priorities: ['json'], fallback_format: 'json', prefer_extension: false }
+    # configuration à rajouter pour désactiver le body listener
+    body_listener:
+        enabled: true
+
